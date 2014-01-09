@@ -97,6 +97,11 @@ def item_imported(lib, item):
     if debug: print 'item_imported: lib: ' + str(lib) + ' item: ' + str(item)
     synoindex_add(item['path'])
 
+@SynoIndex.listen('item_removed')
+def item_removed(item):
+    if debug: print 'item_removed: item: ' + str(item)
+    synoindex_del_file(item['path'])
+
 @SynoIndex.listen('item_moved')
 def item_moved(item, source, destination):
     if debug: print 'item_moved: destination: ' + destination
